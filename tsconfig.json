@@ -32,23 +32,36 @@
     "noImplicitThis": true, /* Raise error on 'this' expressions with an implied 'any' type. */
     "alwaysStrict": true, /* Parse in strict mode and emit "use strict" for each source file. */
     /* Additional Checks */
-    // "noUnusedLocals": true,                      /* Report errors on unused locals. */
-    // "noUnusedParameters": true,                  /* Report errors on unused parameters. */
-    // "noImplicitReturns": true,                   /* Report error when not all code paths in function return a value. */
-    // "noFallthroughCasesInSwitch": true,          /* Report errors for fallthrough cases in switch statement. */
+    "noUnusedLocals": true, /* Report errors on unused locals. */
+    "noUnusedParameters": true, /* Report errors on unused parameters. */
+    "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
+    "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
     // "noUncheckedIndexedAccess": true,            /* Include 'undefined' in index signature results */
     // "noPropertyAccessFromIndexSignature": true,  /* Require undeclared properties from index signatures to use element accesses. */
     /* Module Resolution Options */
     "moduleResolution": "node", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-    "baseUrl": "./", /* Base directory to resolve non-absolute module names. */
+    "baseUrl": ".", /* Base directory to resolve non-absolute module names. */
     "paths": {
       "myspace/*": [
         "*",
-        "bazel-bin/*",
-        "bazel-genfiles/*"
+        // According to ts_project's documentation, these should be placed in
+        // rootDirs without "/*" at the end. However, it couldn't resolve import
+        // with build bazel.
+        // https://bazelbuild.github.io/rules_nodejs/TypeScript.html#ts_project-1
+        "./bazel-out/host/bin/*",
+        "./bazel-out/darwin-fastbuild/bin/*",
+        "./bazel-out/k8-fastbuild/bin/*",
+        "./bazel-out/x64_windows-fastbuild/bin/*",
+        "./bazel-out/darwin-dbg/bin/*",
+        "./bazel-out/k8-dbg/bin/*",
+        "./bazel-out/x64_windows-dbg/bin/*",
+        "./bazel-bin/*",
+        "./bazel-genfiles/*"
       ]
     }, /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
-    // "rootDirs": [],                              /* List of root folders whose combined content represents the structure of the project at runtime. */
+    "rootDirs": [
+      "."
+    ], /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                             /* List of folders to include type definitions from. */
     // "types": [],                                 /* Type declaration files to be included in compilation. */
     // "allowSyntheticDefaultImports": true,        /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
@@ -66,5 +79,9 @@
     /* Advanced Options */
     "skipLibCheck": true, /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "bazel-*"
+  ]
 }
