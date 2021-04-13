@@ -5,11 +5,10 @@ package(default_visibility = ["//visibility:public"])
 
 ts_project(
     name = "add",
-    srcs = [
-        "add.ts",
-        "index.ts",
-        # TODO: glob + exclude *.test.ts
-    ],
+    srcs = glob(
+        ["*.ts"],
+        exclude = ["*.test.ts"],
+    ),
     declaration = True,
     source_map = True,
     tsconfig = "//:tsconfig.json",
@@ -17,9 +16,7 @@ ts_project(
 
 ts_project(
     name = "test_lib",
-    srcs = [
-        "add.test.ts",
-    ],
+    srcs = glob(["*.test.ts"]),
     tsconfig = "//:tsconfig.json",
     validate = False,
     deps = [
