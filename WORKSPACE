@@ -20,6 +20,9 @@ node_repositories(
 
 npm_install(
     name = "npm",
+    data = [
+        "//:patches/jest-haste-map+26.6.2.patch",
+    ],
     package_json = "//:package.json",
     package_lock_json = "//:package-lock.json",
 )

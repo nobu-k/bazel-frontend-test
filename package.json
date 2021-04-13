@@ -1,7 +1,16 @@
 {
+  "name": "bazel-frontend-test",
+  "private": true,
   "devDependencies": {
     "@bazel/ibazel": "^0.15.8",
     "@bazel/typescript": "^3.3.0",
+    "@jest/core": "^26.6.3",
+    "@types/jest": "^26.0.22",
+    "jest-cli": "^26.6.3",
+    "patch-package": "^6.4.7",
     "typescript": "^4.2.4"
+  },
+  "scripts": {
+    "postinstall": "patch-package"
   }
 }

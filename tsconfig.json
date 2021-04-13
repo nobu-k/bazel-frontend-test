@@ -54,9 +54,7 @@
         "./bazel-out/x64_windows-fastbuild/bin/*",
         "./bazel-out/darwin-dbg/bin/*",
         "./bazel-out/k8-dbg/bin/*",
-        "./bazel-out/x64_windows-dbg/bin/*",
-        "./bazel-bin/*",
-        "./bazel-genfiles/*"
+        "./bazel-out/x64_windows-dbg/bin/*"
       ]
     }, /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     "rootDirs": [
@@ -81,7 +79,7 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": [
-    "node_modules",
-    "bazel-*"
+    "bazel-*",
+    "node_modules"
   ]
 }
