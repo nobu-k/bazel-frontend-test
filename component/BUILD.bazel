@@ -1,0 +1,23 @@
+load("@npm//@bazel/typescript:index.bzl", "ts_project")
+
+ts_project(
+    name = "component",
+    srcs = glob(
+        [
+            "*.ts",
+            "*.tsx",
+        ],
+        exclude = [
+            "*.test.ts",
+            "*.test.tsx",
+        ],
+    ),
+    declaration = True,
+    source_map = True,
+    tsconfig = "//:tsconfig.json",
+    deps = [
+        "//add",
+        "@npm//@types",
+        "@npm//react",
+    ],
+)
