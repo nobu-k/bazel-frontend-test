@@ -3,13 +3,11 @@ load("@npm//@bazel/typescript:index.bzl", "ts_project")
 package(default_visibility = ["//visibility:public"])
 
 ts_project(
-    name = "superadd",
-    srcs = ["superadd.ts"],
+    name = "hello",
+    srcs = [
+        "index.ts",
+    ],
     declaration = True,
     source_map = True,
     tsconfig = "//:tsconfig.json",
-    deps = [
-        "//add",
-        "//lib/hello",
-    ],
 )
