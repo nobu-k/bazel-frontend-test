@@ -1,5 +1,5 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
-load("@npm//jest-cli:index.bzl", "jest_test")
+load("//:jest.bzl", "jest_test")
 
 ts_project(
     name = "component",
@@ -41,18 +41,5 @@ ts_project(
 
 jest_test(
     name = "test",
-    args = [
-        "--no-cache",
-        "--no-watchman",
-        "--ci",
-        "--colors",
-    ],
-    data = [
-        ":test_lib",
-        "//:jest.config.js",
-    ],
-    tags = [
-        "no-bazelci-mac",
-        "no-bazelci-windows",
-    ],
+    target = "test_lib",
 )
