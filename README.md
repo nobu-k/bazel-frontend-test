@@ -58,6 +58,10 @@ Second of all, `jest-haste-map` has to be patched to workaround an issue describ
 
 Finally, to apply patches during the `postinstall` phase, `package.json` has to have `name` (see: https://github.com/npm/cli/issues/1299). This issue will be fixed in npm v7.
 
+## `fsevents` and `npm_install`
+
+Bazel doesn't recognize optional dependencies via `npm_install`. So, when `fsevents` is installed on Linux, it fails. This failure doesn't occur with `yarn`. So, use `yarn` instead of `npm` once this error happens.
+
 # References
 
 * [`rules_nodejs`](https://bazelbuild.github.io/rules_nodejs/)
