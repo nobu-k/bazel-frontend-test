@@ -3,8 +3,12 @@
   "private": true,
   "devDependencies": {
     "@bazel/ibazel": "^0.15.8",
+    "@bazel/rollup": "^3.4.0",
     "@bazel/typescript": "^3.3.0",
     "@jest/core": "^26.6.3",
+    "@rollup/plugin-alias": "^3.1.2",
+    "@rollup/plugin-commonjs": "^18.0.0",
+    "@rollup/plugin-node-resolve": "^11.2.1",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@types/jest": "^26.0.22",
@@ -12,6 +16,7 @@
     "@types/react-dom": "^17.0.3",
     "jest-cli": "^26.6.3",
     "patch-package": "^6.4.7",
+    "rollup": "^2.45.2",
     "typescript": "^4.2.4"
   },
   "scripts": {

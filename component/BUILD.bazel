@@ -16,6 +16,7 @@ ts_project(
     declaration = True,
     source_map = True,
     tsconfig = "//:tsconfig.json",
+    visibility = ["//visibility:public"],
     deps = [
         "//add",
         "@npm//@types",

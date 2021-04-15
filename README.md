@@ -62,6 +62,12 @@ Finally, to apply patches during the `postinstall` phase, `package.json` has to 
 
 Bazel doesn't recognize optional dependencies via `npm_install`. So, when `fsevents` is installed on Linux, it fails. This failure doesn't occur with `yarn`. So, use `yarn` instead of `npm` once this error happens.
 
+## Rollup
+
+When configuring `tsconfig.json` to generate commonjs output, Rollup requires `@rollup/plugin-commonjs` (see: https://github.com/rollup/rollup/issues/3355).
+
+To resolve internal libraries, path aliases (`myspace/` in this case) must be resolved manually. `PWD` in the build process is at `/path/to/execroot/myspace`. Then, all outputs are placed under `/path/to/execroot/myspace/bazel-out/k8-fastbuild/bin`. The actual value of `k8-fastbuild/bin` depends on the environment where `bazel build` is executed. So, `myspace/path/to/lib` needs to be replaced with `/path/to/execroot/myspace/bazel-out/k8-fastbuild/bin/path/to/lib`.
+
 # References
 
 * [`rules_nodejs`](https://bazelbuild.github.io/rules_nodejs/)

@@ -1,0 +1,35 @@
+load("@npm//@bazel/typescript:index.bzl", "ts_project")
+load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
+
+ts_project(
+    name = "lib",
+    srcs = glob(
+        ["*.ts*"],
+        exclude = ["*.test.ts*"],
+    ),
+    declaration = True,
+    source_map = True,
+    tsconfig = "//:tsconfig.json",
+    deps = [
+        "//component",
+        "@npm//@types",
+        "@npm//react",
+        "@npm//react-dom",
+    ],
+)
+
+# TODO: production or development
+
+rollup_bundle(
+    name = "bundle",
+    srcs = [":lib"],
+    config_file = "rollup.config.js",
+    entry_point = "index.js",
+    deps = [
+        ":lib",
+        "//component",
+        "@npm//@rollup/plugin-alias",
+        "@npm//@rollup/plugin-commonjs",
+        "@npm//@rollup/plugin-node-resolve",
+    ],
+)
