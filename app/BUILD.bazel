@@ -1,5 +1,7 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
 load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
+load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
+load("@npm//http-server:index.bzl", "http_server")
 
 ts_project(
     name = "lib",
@@ -25,11 +27,27 @@ rollup_bundle(
     srcs = [":lib"],
     config_file = "rollup.config.js",
     entry_point = "index.js",
+    format = "iife",
+    output_dir = True,  # TODO: customize output directory name
     deps = [
         ":lib",
-        "//component",
         "@npm//@rollup/plugin-alias",
         "@npm//@rollup/plugin-commonjs",
         "@npm//@rollup/plugin-node-resolve",
+        "@npm//@rollup/plugin-replace",
     ],
+)
+
+pkg_web(
+    name = "package",
+    srcs = [
+        "index.html",
+        ":bundle",
+    ],
+)
+
+http_server(
+    name = "server",
+    data = [":package"],
+    templated_args = ["app/package"],
 )
