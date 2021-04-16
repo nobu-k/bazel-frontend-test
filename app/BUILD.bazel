@@ -29,7 +29,7 @@ rollup_bundle(
     config_file = "rollup.config.js",
     entry_point = "index.js",
     format = "iife",
-    output_dir = True,  # TODO: customize output directory name
+    output_dir = True,  # TODO: customize output directory name. "name" attribute will be used as the output directory name.
     deps = [
         ":lib",
         "@npm//@rollup/plugin-alias",

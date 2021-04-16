@@ -13,7 +13,7 @@ http_archive(
 
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "npm_install")
 
-# TODO: terser doesn't work with this configuration. https://github.com/bazelbuild/rules_nodejs/issues/2610
+# TODO: terser_minified doesn't currently work with this configuration. https://github.com/bazelbuild/rules_nodejs/issues/2610
 # node_repositories(
 #     node_version = "14.16.0",
 #     package_json = ["//:package.json"],

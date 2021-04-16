@@ -68,7 +68,9 @@ When configuring `tsconfig.json` to generate commonjs output, Rollup requires `@
 
 To resolve internal libraries, path aliases (`myspace/` in this case) must be resolved manually. `PWD` in the build process is at `/path/to/execroot/myspace`. Then, all outputs are placed under `/path/to/execroot/myspace/bazel-out/k8-fastbuild/bin`. The actual value of `k8-fastbuild/bin` depends on the environment where `bazel build` is executed. So, `myspace/path/to/lib` needs to be replaced with `/path/to/execroot/myspace/bazel-out/k8-fastbuild/bin/path/to/lib`.
 
-To output a bundled file that can be used by browser, `format` should be `iife`. The format value has to be provided to both `rollup_bundle` and `rollup.config.js`.
+To output a bundled file that can be used by browser, `format` should be `iife`. The format value has to be provided to both `rollup_bundle` (and `rollup.config.js`, just in case, although it isn't used).
+
+Some parameters available in config files will not be used because `rollup_bundle` overwrites them with command line flags. This includes`format` and `output.dir`. Because of this specification, the name of `output.dir` is not customizable at the time of this writing. You can look at `rollup_bundle.bzl` to see which parameters will be overwritten.
 
 React uses `process.env` internally, and it has to be replaced.
 
