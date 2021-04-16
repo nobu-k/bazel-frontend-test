@@ -29,7 +29,7 @@ export default {
     resolve(),
     replace({
       values: {
-        'process.env.NODE_ENV': JSON.stringify('production'),
+        'process.env.NODE_ENV': JSON.stringify('production'), // TODO: remove this and use pkg_web substitutions
       },
       preventAssignment: true,
     }),
