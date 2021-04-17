@@ -74,6 +74,10 @@ Some parameters available in config files will not be used because `rollup_bundl
 
 React uses `process.env` internally, and it has to be replaced.
 
+## `pkg_web`'s `substitutions`
+
+I wanted to use `substitutions` attributes to replace `process.env.NODE_ENV` in the bundled code. However, it didn't work well. It's probably because the `genrule` only specifies the directory as its output and `pkg_web` doesn't crawl inside, but I'm not sure because `rules_nodejs/internal/pkg_web/assembler.js` seems to be doing its job.
+
 # References
 
 * [`rules_nodejs`](https://bazelbuild.github.io/rules_nodejs/)
