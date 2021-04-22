@@ -46,7 +46,7 @@ terser_minified(
 
 # TODO: instead of this genrule, create a rule to generate a directory whose name is a hash-value, and inject it to index.html
 genrule(
-    name = "script",
+    name = "package-script",
     srcs = [":bundle.min"],
     outs = ["script"],
     cmd = "cp -r $< $(RULEDIR)/script",
@@ -56,7 +56,7 @@ pkg_web(
     name = "package",
     srcs = [
         "index.html",
-        ":script",
+        ":package-script",
     ],
 )
 
