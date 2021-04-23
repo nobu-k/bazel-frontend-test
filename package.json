@@ -16,6 +16,7 @@
     "@types/jest": "^26.0.22",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
+    "c8": "^7.7.1",
     "http-server": "^0.12.3",
     "jest-cli": "^26.6.3",
     "patch-package": "^6.4.7",

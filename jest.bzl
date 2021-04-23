@@ -10,13 +10,15 @@ def jest_test(name, target, deps = [], jest_config = None, **kwargs):
         "--no-watchman",
         "--ci",
         "--colors",
+        "--coverage",
+        # "--coverage-reporter=lcov", # TODO: the generated report is broken
     ]
     if jest_config == None:
         jest_config = "//:jest.config.js"
     else:
         templated_args.extend(["--config", "$(rootpath %s)" % jest_config])
 
-    data = [target, jest_config] + deps
+    data = [target, jest_config, "@npm//c8"] + deps
     _jest_test(
         name = name,
         data = data,
